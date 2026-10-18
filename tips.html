@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Travel Tips</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="page-layout">
+        <header class="page-header">
+        <nav class="navbar navbar-expand-lg navbar-dark w-100">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="index.html">Travel Explorer</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link " href="index.html">Home</a>
+                        <a class="nav-link" href="destinations.html">Destinations</a>
+                        <a class="nav-link active" href="tips.html">Travel Tips</a>
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                        <a class="nav-link" href="about.html">About Team</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+        <aside class="page-sidebar p-3">
+            <h3>Travel Categories</h3>
+            <ul>
+                <li>Beaches</li>
+                <li>Mountains</li>
+                <li>Cities</li>
+                <li>Nature</li>
+            </ul>
+        </aside>
+        <main class="page-main container mt-4">
+            <section class="row p-3 mt-lg-4 px-sm-2">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="images/travel.jpg" alt="Travel essentials">
+                    <h2>Before You Travel</h2>
+                    <p>A little preparation can make a trip much easier.</p>
+                    <ol>
+                        <li>Check your passport and travel documents.</li>
+                        <li>Book your hotel and transport in advance.</li>
+                        <li>Check the weather at your destination.</li>
+                        <li>Make a list of important things to take.</li>
+                    </ol>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <img src="images/preparation.jpg" alt="Travel preparation">
+                    <h2>Travel Preparation</h2>
+                    <p>Good preparation helps make your trip easier and more comfortable.</p>
+                </div>
+            </section>
+            <section class="row p-3 mt-4">
+                <h2>What to Pack</h2>
+                <ul>
+                    <li>Comfortable clothes</li>
+                    <li>Travel documents</li>
+                    <li>Phone and charger</li>
+                    <li>Personal items</li>
+                </ul>
+            </section>
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        What should I pack for a trip?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Pack comfortable clothes, travel documents, your phone, a charger, and personal essentials</p>
+                    </div>
+                </div>
+            </section>
+            <div class="ask-question-section">
+                <h2>Need Travel Advice?</h2>
+                <p>Have a question about your next trip? We are here to help.</p>
+                <button type="button" id="openPopup" class="btn btn-primary">
+                    Ask a Travel Question
+                </button>
+            </div>
+            <div class="popup-overlay" id="questionPopup">
+                <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+                    <button type="button" id="closePopup" class="popup-close" aria-label="Close form">
+                        &times;
+                    </button>
+                    <h2 id="popupTitle">Ask a Travel Question</h2>
+                    <p>Fill in the form below and tell us how we can help.</p>
+                    <form id="questionForm">
+                        <div class="mb-3">
+                            <label for="visitorName" class="form-label">Your Name</label>
+                            <input type="text" id="visitorName" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="visitorEmail" class="form-label">Your Email</label>
+                            <input type="email" id="visitorEmail" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="visitorQuestion" class="form-label">Your Question</label>
+                            <textarea id="visitorQuestion" class="form-control" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Submit Question
+                        </button>
+                        <p id="formMessage" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+            <section class="row p-3 mt-lg-4">
+                <div class="row g-3">
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2>Travel Tips for Our Destinations</h2>
+                                <h3>Plan Ahead</h3>
+                                <p>Research your destination before travelling. Check transportation, accommodation and important places you would like to visit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Keep Your Important Items Safe</h3>
+                                <p>Keep your passport, money and other important documents in a safe place during your trip.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Stay Connected</h3>
+                                <p>Keep your phone charged and stay connected with important travel information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="page-footer">
+            <div class="date-time">
+                <p>Current date and time:</p>
+                <p id="currentDateTime">Loading...</p>
+            </div>
+            <p>Created by: Zhibek, Albina, Aruzhan</p>
+            <p>&copy; 2026 Travel Website</p>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

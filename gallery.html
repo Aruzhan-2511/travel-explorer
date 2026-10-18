@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Gallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-layout">
+    <header class="page-header">
+        <nav class="navbar navbar-expand-lg navbar-dark w-100">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="gallery.html">Travel Explorer</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link " href="index.html">Home</a>
+                        <a class="nav-link" href="destinations.html">Destinations</a>
+                        <a class="nav-link" href="tips.html">Travel Tips</a>
+                        <a class="nav-link active" href="gallery.html">Gallery</a>
+                        <a class="nav-link" href="about.html">About Team</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <aside class="page-sidebar p-3">
+        <h3>Travel Categories</h3>
+        <ul>
+            <li>Beaches</li>
+            <li>Mountains</li>
+            <li>Cities</li>
+            <li>Nature</li>
+        </ul>
+    </aside>
+    <main class="page-main container py-4">
+        <section class="color-changer-section">
+            <h2>Customize Your Gallery</h2>
+            <p>Choose a background color that matches your travel mood!</p>
+            <button type="button" id="changeColorBtn" class="btn btn-primary">
+                Change Background Color
+            </button>
+        </section>
+        <section class="content-box p-4 mb-4">
+            <h2>Our Travel Gallery</h2>
+            <p>
+                Discover some of the beautiful destinations included in our travel website.
+            </p>
+            <div class="gallery">
+                <div class="card">
+                    <img src="images/bora-bora.jpg" alt="Beautiful beach in Bora Bora">
+                    <div class="card-body">
+                        <h3 class="card-title">Bora Bora</h3>
+                        <p class="card-text">Enjoy the beautiful beaches and clear blue water of Bora Bora.</p>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/netherlands.jpg" alt="Beautiful view of the Netherlands">
+                    <div class="card-body">
+                        <h3 class="card-title">Netherlands</h3>
+                        <p class="card-text">Discover canals, traditional architecture and beautiful landscapes.</p>
+                        <a href="destinations.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/switzerland.jpg" alt="Swiss mountains">
+                    <div class="card-body">
+                        <h3 class="card-title">Switzerland</h3>
+                        <p class="card-text">Explore amazing mountains, lakes and peaceful natural views.</p>
+                        <a href="destinations.html" class="btn btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/paris.jpg" alt="View of Paris">
+                    <div class="card-body">
+                        <h3 class="card-title">Paris</h3>
+                        <p class="card-text">Experience the beautiful streets and famous sights of Paris.</p> 
+                        <a href="destinations.html" class="btn btn-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/dubai.jpg" alt="View of Dubai">
+                    <div class="card-body">
+                       <h3 class="card-title">Dubai</h3>
+                       <p class="card-text">Explore modern architecture and amazing city views in Dubai.</p>
+                       <a href="destinations.html" class="btn btn-secondary btn-sm">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/istanbul.jpg" alt="View of Istanbul">
+                    <div class="card-body">
+                        <h3 class="card-title">Istanbul</h3>
+                        <p class="card-text">Discover the unique culture and architecture of Istanbul.</p>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/japan.jpg" alt="View of Japan">
+                    <div class="card-body">
+                        <h3 class="card-title">Japan</h3>
+                        <p class="card-text">Discover Japanese culture, temples and beautiful landscapes.</p>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/italy.jpg" alt="View of Italy">
+                    <div class="card-body">
+                        <h3 class="card-title">Italy</h3>
+                        <p class="card-text">Enjoy historic cities, beautiful architecture and Italian culture.</p>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/greece.jpg" alt="View of Greece">
+                    <div class="card-body">
+                        <h3 class="card-title">Greece</h3>
+                        <p class="card-text">Explore beautiful islands, beaches and acient history.</p>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-4 mb-4">
+                <div class="btn-group" role="group" aria-label="Travel actions">
+                    <a href="tips.html" class="btn btn-primary">Travel Tips</a>
+                    <a href="destinations.html" class="btn btn-secondary">Destinations</a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div id="travelCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                                <button type="button" data-bs-target="#travelCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                            </div>
+                            <div class="carousel-inner rounded">
+                                <div class="carousel-item active">
+                                    <img src="images/dubai.jpg" class="d-block w-100" alt="Dubai">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/japan.jpg" class="d-block w-100" alt="Japan">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/italy.jpg" class="d-block w-100" alt="Italy">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/greece.jpg" class="d-block w-100" alt="Greece">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/bora-bora.jpg" class="d-block w-100" alt="Bora Bora">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/netherlands.jpg" class="d-block w-100" alt="Netherlands">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/switzerland.jpg" class="d-block w-100" alt="Switzerland">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/paris.jpg" class="d-block w-100" alt="Paris">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/istanbul.jpg" class="d-block w-100" alt="Istanbul">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#travelCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer">
+        <div class="date-time">
+            <p>Current date and time:</p>
+            <p id="currentDateTime">Loading...</p>
+        </div>
+        <p>Created by: Zhibek, Albina, Aruzhan</p>
+        <p>&copy; 2026 Travel Website</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
