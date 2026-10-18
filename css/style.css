@@ -683,3 +683,23 @@ body > footer p {
         font-size: 16px;
     }
 }
+
+
+.color-changer-section {
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 35px;
+    margin-bottom: 25px;
+}
+
+.color-changer-section h2 {
+    color: #0077b6;
+    margin-bottom: 15px;
+}
+
+.color-changer-section p {
+    margin-bottom: 20px;
+}
+
