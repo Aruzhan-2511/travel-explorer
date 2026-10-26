@@ -1,35 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    function updateDateTime() {
-        const dateTimeElements = document.querySelectorAll(
-            "#currentDateTime, #dateTime"
-        );
-
-        if (dateTimeElements.length === 0) {
-            return;
-        }
-
-        const now = new Date();
-
-        const formattedDateTime = now.toLocaleString("en-GB", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        });
-
-        dateTimeElements.forEach(function (element) {
-            element.textContent = formattedDateTime;
-        });
-    }
-
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-
-
     const colorButtons = document.querySelectorAll(
         "#colorButton, #changeColorBtn, #colorChangeBtn"
     );
@@ -70,15 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const isOpen =
-                question.getAttribute("aria-expanded") === "true" ||
+                question.getAttribute("aria-expanded") === "true" &&
                 answer.classList.contains("active");
+
 
             question.setAttribute(
                 "aria-expanded",
                 String(!isOpen)
             );
 
-            answer.classList.toggle("active", !isOpen);
 
             if (isOpen) {
                 answer.style.maxHeight = "0px";
@@ -481,9 +452,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    const questionForm = document.getElementById("questionForm");
+    
+const questionForm = document.getElementById("questionForm");
 
-    if (questionForm) {
+if (questionForm) {
+    const firstStep = document.getElementById("formStep1");
+    const secondStep = document.getElementById("formStep2");
+    const nextButton = document.getElementById("nextStep");
+    const backButton = document.getElementById("backStep");
+    const stepDescription = document.getElementById("stepDescription");
+    const formMessage = document.getElementById("formMessage");
+
+    if (firstStep && secondStep && nextButton && backButton && stepDescription && formMessage) {
+        nextButton.addEventListener("click", function () {
+            const nameInput = document.getElementById("visitorName");
+            const emailInput = document.getElementById("visitorEmail");
+
+            if (!nameInput.checkValidity()) {
+                nameInput.reportValidity();
+                return;
+            }
+
+            if (!emailInput.checkValidity()) {
+                emailInput.reportValidity();
+                return;
+            }
+
+            firstStep.hidden = true;
+            secondStep.hidden = false;
+
+            stepDescription.textContent =
+                "Step 2 of 2: Tell us your travel question.";
+
+            formMessage.textContent = "";
+            document.getElementById("visitorQuestion").focus();
+        });
+
+        backButton.addEventListener("click", function () {
+            secondStep.hidden = true;
+            firstStep.hidden = false;
+
+            stepDescription.textContent =
+                "Step 1 of 2: Tell us about yourself.";
+
+            formMessage.textContent = "";
+            document.getElementById("visitorName").focus();
+        });
+
         questionForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -492,17 +507,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const message = document.getElementById("formMessage");
+            const visitorName = document.getElementById("visitorName").value.trim();
 
-            if (message) {
-                message.textContent =
-                    "Thank you! Form validated successfully. " +
-                    "(Demo only — no message was sent.)";
-            }
+            formMessage.textContent =
+                "Thank you, " + visitorName +
+                "! Your form has been completed successfully.";
+
+            formMessage.classList.add("success-message");
 
             questionForm.reset();
+            secondStep.hidden = true;
+            firstStep.hidden = false;
+
+            stepDescription.textContent =
+                "Step 1 of 2: Tell us about yourself.";
         });
     }
+}
+
 
 
     const popupForm = document.getElementById("popupForm");

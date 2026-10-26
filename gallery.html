@@ -12,7 +12,7 @@
     <header class="page-header">
         <nav class="navbar navbar-expand-lg navbar-dark w-100">
             <div class="container-fluid">
-                <a class="navbar-brand logo" href="gallery.html">Travel Explorer</a>
+                <a class="navbar-brand logo" href="index.html">Travel Explorer</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
                     aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,6 +46,53 @@
             <p>
                 Discover some of the beautiful destinations included in our travel website.
             </p>
+            <div class="interactive-gallery mb-5">
+                <h3>Explore Destinations</h3>
+                <p>Click a thumbnail to view the destination.</p>
+                <div class="main-gallery-image mb-3">
+                    <img id="mainGalleryImage" src="images/bora-bora.jpg" alt="Beautiful beach in Bora Bora" class="img-fluid rounded">
+                </div>
+                <div class="gallery-thumbnails" aria-label="Choose a destination">
+                    <button type="button" class="gallery-thumbnail active" data-image="images/bora-bora.jpg" data-alt="Beautiful beach in Bora Bora" aria-label="View Bora Bora">
+                        <img src="images/bora-bora.jpg" alt="">
+                    </button>
+
+                    <button type="button" class="gallery-thumbnail" data-image="images/netherlands.jpg" data-alt="Beautiful view of the Netherlands" aria-label="View Netherlands">
+                        <img src="images/netherlands.jpg" alt="">
+                    </button>
+        
+                    <button type="button" class="gallery-thumbnail" data-image="images/switzerland.jpg" data-alt="Swiss mountains" aria-label="View Switzerland">
+                        <img src="images/switzerland.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/paris.jpg" data-alt="View of Paris" aria-label="View Paris">
+                        <img src="images/paris.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/dubai.jpg" data-alt="View of Dubai" aria-label="View Dubai">
+                        <img src="images/dubai.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/istanbul.jpg" data-alt="View of Istanbul" aria-label="View Istanbul">
+                        <img src="images/istanbul.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/japan.jpg" data-alt="View of Japan" aria-label="View Japan">
+                        <img src="images/japan.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/italy.jpg" data-alt="View of Italy" aria-label="View Italy">
+                        <img src="images/italy.jpg" alt="">
+                    </button>
+                    
+                    <button type="button" class="gallery-thumbnail" data-image="images/greece.jpg" data-alt="View of Greece" aria-label="View Greece">
+                        <img src="images/greece.jpg" alt="">
+                    </button>
+                </div>
+                <p id="galleryMessage" aria-live="polite">
+                    Selected destination: Bora Bora
+                </p>
+            </div>
             <div class="gallery">
                 <div class="card">
                     <img src="images/bora-bora.jpg" alt="Beautiful beach in Bora Bora">
@@ -212,6 +259,9 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 
 </html>

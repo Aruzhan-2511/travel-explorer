@@ -31,13 +31,21 @@
         </nav>
     </header>
     <aside class="page-sidebar p-3">
+
         <h3>Travel Categories</h3>
-        <ul>
-            <li>Beaches</li>
-            <li>Mountains</li>
-            <li>Cities</li>
-            <li>Nature</li>
-        </ul>
+
+        <div class="category-filters">
+            <button type="button" data-category="Beaches">Beaches</button>
+            <button type="button" data-category="Mountains">Mountains</button>
+            <button type="button" data-category="Cities">Cities</button>
+            <button type="button" data-category="Nature">Nature</button>
+            <button type="button" data-category="All">Show All</button>
+        </div>
+
+        <p id="categoryMessage" aria-live="polite">
+            Choose a travel category.
+        </p>
+
     </aside>
     <main class="page-main container mt-4">
         <section class="row p-3 mt-lg-4 px-sm-2">
@@ -92,58 +100,54 @@
                     &times;
                 </button>
                 <h2 id="popupTitle">Ask a Travel Question</h2>
-                <p>Fill in the form below and tell us how we can help.</p>
+                <p id="stepDescription">Step 1 of 2: Tell us about yourself.</p>
+
+
                 <form id="questionForm">
-                    <div class="mb-3">
-                        <label for="visitorName" class="form-label">Your Name</label>
-                        <input type="text" id="visitorName" class="form-control" required>
+                    <div class="form-step" id="formStep1">
+                        <div class="mb-3">
+                            <label for="visitorName" class="form-label">Your Name</label>
+                            <input type="text" id="visitorName" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="visitorEmail" class="form-label">Your Email</label>
+                            <input type="email" id="visitorEmail" class="form-control" required>
+                        </div>
+
+                        <button type="button" id="nextStep" class="btn btn-primary w-100">
+                            Next
+                        </button>
                     </div>
-                    <div class="mb-3">
-                        <label for="visitorEmail" class="form-label">Your Email</label>
-                        <input type="email" id="visitorEmail" class="form-control" required>
+
+                    <div class="form-step" id="formStep2" hidden>
+                        <div class="mb-3">
+                            <label for="visitorQuestion" class="form-label">Your Question</label>
+                            <textarea id="visitorQuestion" class="form-control" rows="4" required></textarea>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="button" id="backStep" class="btn btn-secondary w-50">
+                                Back
+                            </button>
+
+                            <button type="submit" class="btn btn-primary w-50">
+                                Submit Question
+                            </button>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="visitorQuestion" class="form-label">Your Question</label>
-                        <textarea id="visitorQuestion" class="form-control" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">
-                        Submit Question
-                    </button>
+
                     <p id="formMessage" role="status" aria-live="polite"></p>
                 </form>
+
             </div>
         </div>
+
         <section class="row p-3 mt-lg-4">
-            <div class="row g-3">
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2>Travel Tips for Our Destinations</h2>
-                            <h3>Plan Ahead</h3>
-                            <p>Research your destination before travelling. Check transportation, accommodation and
-                                important places you would like to visit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3>Keep Your Important Items Safe</h3>
-                            <p>Keep your passport, money and other important documents in a safe place during your trip.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3>Stay Connected</h3>
-                            <p>Keep your phone charged and stay connected with important travel information.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="row g-3" id="tipsContainer">
             </div>
         </section>
+
 
         <section class="content-box color-changer-section">
             <h2>Change Background Color</h2>
@@ -164,6 +168,9 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/tips.js"></script>
 </body>
 
 </html>

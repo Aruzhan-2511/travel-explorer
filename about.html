@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,7 @@
 
 <body>
 
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-info px-3 px-sm-2 px-lg-4">
         <div class="container-fluid">
 
@@ -21,12 +20,8 @@
                 Travel Explorer
             </a>
 
-            <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -34,7 +29,7 @@
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link text-white" href="index.html">Home</a>
                     <a class="nav-link text-white" href="destinations.html">Destinations</a>
-                    <a class="nav-link text-white" href="TravelTips.html">Travel Tips</a>
+                    <a class="nav-link text-white" href="tips.html">Travel Tips</a>
                     <a class="nav-link text-white" href="gallery.html">Gallery</a>
                     <a class="nav-link text-dark active" href="about.html">About Team</a>
                     <a class="nav-link text-white" href="contact.html">Contact</a>
@@ -46,112 +41,29 @@
 
     <main class="container py-4 px-sm-2 px-lg-4">
 
-       
-        <section class="mb-4 p-4 border rounded">
-
-            <div class="row align-items-center">
-
-                <div class="col-md-6 col-lg-6">
-                    <h1>About Our Team</h1>
-
-                    <p>
-                        Meet the team behind our travel website.
-                        We created this website to share useful travel
-                        information, destinations, hotels, and inspiration
-                        for future trips.
-                    </p>
-                </div>
-
-                <div class="col-md-6 col-lg-6">
-                    <h2>Our Mission</h2>
-
-                    <p>
-                        Our goal is to make travel planning simple
-                        and enjoyable and help visitors discover
-                        interesting places around the world.
-                    </p>
-                </div>
-
-            </div>
-        </section>
 
 
         <section class="mb-4 mt-lg-4">
 
             <h2 class="mb-4">Meet Our Team</h2>
 
-            <div class="team-container">
+            <div class="team-container" id="teamContainer"></div>
 
-                
-                <div class="team-card">
+            <div class="mt-4 p-4 border rounded" id="teamDetails">
 
-                    <img src="images/Zhibek.jpg"
-                        class="team-photo"
-                        alt="Zhibek">
+                <h3 id="selectedMember">Select a Team Member</h3>
 
-                    <h3>Zhibek</h3>
-
-                    <p>
-                        Responsible for Home and Destinations pages.
-                        She introduces our website and helps visitors
-                        discover interesting travel destinations.
-                    </p>
-
-                    <a href="destinations.html" class="btn btn-primary">
-                        View Page
-                    </a>
-
-                </div>
-
-
-                
-                <div class="team-card">
-
-                    <img src="images/Albina.jpg"
-                        class="team-photo"
-                        alt="Albina">
-
-                    <h3>Albina</h3>
-
-                    <p>
-                        Responsible for Travel Tips and Gallery pages.
-                        She shares useful travel information and
-                        beautiful travel photos to inspire future trips.
-                    </p>
-
-                    <a href="TravelTips.html" class="btn btn-primary">
-                        View Page
-                    </a>
-
-                </div>
-
-
-                
-                <div class="team-card">
-
-                    <img src="images/Aruzhan.jpg"
-                        class="team-photo"
-                        alt="Aruzhan">
-
-                    <h3>Aruzhan</h3>
-
-                    <p>
-                        Responsible for About Team and Contact pages.
-                        She introduces our team and helps visitors
-                        communicate with us.
-                    </p>
-
-                    <a href="contact.html" class="btn btn-primary">
-                        View Page
-                    </a>
-
-                </div>
+                <p id="memberDescription">
+                    Click on a team member to learn more about their role.
+                </p>
 
             </div>
+
         </section>
 
 
-        
+
+
         <section class="mb-4 p-4 border rounded">
 
             <h2 class="mb-4">Team Responsibilities</h2>
@@ -198,7 +110,7 @@
         </section>
 
 
-        
+
         <section class="mb-4 p-4 border rounded">
 
             <h2 class="mb-3">Our Travel Goals</h2>
@@ -227,21 +139,17 @@
 
             </div>
 
-            <div class="btn-group mt-4" role="group"
-                aria-label="Travel page links">
+            <div class="btn-group mt-4" role="group" aria-label="Travel page links">
 
-                <a href="destinations.html"
-                    class="btn btn-outline-primary">
+                <a href="destinations.html" class="btn btn-outline-primary">
                     Destinations
                 </a>
 
-                <a href="gallery.html"
-                    class="btn btn-outline-primary">
+                <a href="gallery.html" class="btn btn-outline-primary">
                     Gallery
                 </a>
 
-                <a href="contact.html"
-                    class="btn btn-outline-primary">
+                <a href="contact.html" class="btn btn-outline-primary">
                     Contact
                 </a>
 
@@ -249,15 +157,14 @@
         </section>
 
 
-        
+
         <section class="mb-4 p-4 border rounded">
 
             <h2 class="mb-4">Frequently Asked Questions</h2>
 
             <div class="faq-item">
 
-                <button class="faq-question" type="button"
-                    aria-expanded="false">
+                <button class="faq-question" type="button" aria-expanded="false">
                     What is Travel Explorer?
                     <span>+</span>
                 </button>
@@ -273,8 +180,7 @@
 
             <div class="faq-item">
 
-                <button class="faq-question" type="button"
-                    aria-expanded="false">
+                <button class="faq-question" type="button" aria-expanded="false">
                     How can I contact the team?
                     <span>+</span>
                 </button>
@@ -289,8 +195,7 @@
 
             <div class="faq-item">
 
-                <button class="faq-question" type="button"
-                    aria-expanded="false">
+                <button class="faq-question" type="button" aria-expanded="false">
                     Where can I find travel tips?
                     <span>+</span>
                 </button>
@@ -316,9 +221,7 @@
                 Click the button to change the page background color.
             </p>
 
-            <button type="button"
-                class="btn btn-primary"
-                id="colorButton">
+            <button type="button" class="btn btn-primary" id="colorButton">
                 Change Color
             </button>
 
@@ -328,7 +231,7 @@
     </main>
 
 
-    
+
     <footer class="page-footer">
         <div class="date-time">
             <p>Current date and time:</p>
@@ -340,6 +243,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/about.js"></script>
+    
 
 </body>
+
 </html>
