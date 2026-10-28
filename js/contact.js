@@ -105,6 +105,20 @@ document.addEventListener("DOMContentLoaded", function () {
             travelStatus.style.color = "green";
         }
     });
+    const stars = document.querySelectorAll(".star");
+    const ratingMessage = document.getElementById("ratingMessage");
+
+    stars.forEach(function (star, index) {
+        star.addEventListener("click", function () {
+
+            stars.forEach(function (item, i) {
+                item.style.color = i <= index ? "gold" : "gray";
+            });
+
+            ratingMessage.textContent =
+                "You rated us " + (index + 1) + " out of 5 stars!";
+        });
+    });
 
     showStep(currentStep);
 

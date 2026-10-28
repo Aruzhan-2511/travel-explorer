@@ -1030,4 +1030,19 @@ body.night-mode .site-footer {
         transform: translateY(0);
     }
 }
+.rating-section {
+    margin-top: 20px;
+}
+
+.star {
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.star:hover {
+    transform: scale(1.15);
+}
 
