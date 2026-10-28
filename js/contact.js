@@ -52,7 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const message = document.getElementById("travelMessage").value;
 
         travelSummary.textContent =
-            "Name: " + name +
+            "Welcome, " + name + "!" +
+            "\n\nName: " + name +
             "\nEmail: " + email +
             "\nDestination: " + destination +
             "\nTravel Plans: " + message;
