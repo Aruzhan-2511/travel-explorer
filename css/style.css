@@ -1306,3 +1306,13 @@ body.night-mode .page-sidebar a,
 body.night-mode .page-sidebar li {
     color: #edf6f9 !important;
 }
+body.night-mode .ask-question-section {
+    background-color: #1b3542 !important;
+    color: #edf6f9 !important;
+    border-color: #345766 !important;
+}
+
+body.night-mode .ask-question-section h2,
+body.night-mode .ask-question-section p {
+    color: #edf6f9 !important;
+}
