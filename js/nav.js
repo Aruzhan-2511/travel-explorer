@@ -48,3 +48,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.querySelector(".navbar-nav");
+
+    if (!navbar) {
+        return;
+    }
+
+    const isLoggedIn = localStorage.getItem("travelLoggedIn") === "true";
+    let profileLink = document.getElementById("profileLink");
+
+    if (profileLink) {
+        profileLink.classList.toggle("d-none", !isLoggedIn);
+        return;
+    }
+
+    if (!isLoggedIn) {
+        return;
+    }
+
+    profileLink = document.createElement("a");
+    profileLink.href = "profile.html";
+    profileLink.textContent = "Profile";
+    profileLink.className = "nav-link";
+    profileLink.id = "profileLink";
+
+    if (navbar.tagName === "UL") {
+        const navItem = document.createElement("li");
+        navItem.className = "nav-item";
+        navItem.appendChild(profileLink);
+        navbar.appendChild(navItem);
+    } else {
+        navbar.appendChild(profileLink);
+    }
+});
