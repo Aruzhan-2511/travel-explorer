@@ -6,6 +6,7 @@
     <title>Travel Gallery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
 <body class="page-layout">
@@ -40,12 +41,28 @@
         </ul>
     </aside>
     <main class="page-main container py-4">
-
         <section class="content-box p-4 mb-4">
             <h2>Our Travel Gallery</h2>
             <p>
                 Discover some of the beautiful destinations included in our travel website.
             </p>
+            <div class="autocomplete-container mb-4">
+                <label for="destinationSearch" class="form-label">
+                    Search Destination
+                </label>
+                <input      
+                    type="text"
+                    id="destinationSearch"
+                    class="form-control"
+                    placeholder="Start typing a destination..."
+                    autocomplete="off"
+                >
+                <div
+                    id="suggestions"
+                    class="suggestions-list"
+                    aria-live="polite"
+                ></div>
+            </div>
             <div class="interactive-gallery mb-5">
                 <h3>Explore Destinations</h3>
                 <p>Click a thumbnail to view the destination.</p>
@@ -93,9 +110,9 @@
                     Selected destination: Bora Bora
                 </p>
             </div>
-            <div class="gallery">
+            <div class="gallery" id="galleryCards">
                 <div class="card">
-                    <img src="images/bora-bora.jpg" alt="Beautiful beach in Bora Bora">
+                    <img data-src="images/bora-bora.jpg" alt="Beautiful beach in Bora Bora">
                     <div class="card-body">
                         <h3 class="card-title">Bora Bora</h3>
                         <p class="card-text">Enjoy the beautiful beaches and clear blue water of Bora Bora.</p>
@@ -103,7 +120,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/netherlands.jpg" alt="Beautiful view of the Netherlands">
+                    <img data-src="images/netherlands.jpg" alt="Beautiful view of the Netherlands">
                     <div class="card-body">
                         <h3 class="card-title">Netherlands</h3>
                         <p class="card-text">Discover canals, traditional architecture and beautiful landscapes.</p>
@@ -111,15 +128,15 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/switzerland.jpg" alt="Swiss mountains">
+                    <img data-src="images/switzerland.jpg" alt="Swiss mountains">
                     <div class="card-body">
                         <h3 class="card-title">Switzerland</h3>
                         <p class="card-text">Explore amazing mountains, lakes and peaceful natural views.</p>
-                        <a href="destinations.html" class="btn btn-outline-primary">Learn More</a>
+                        <a href="destinations.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/paris.jpg" alt="View of Paris">
+                    <img data-src="images/paris.jpg" alt="View of Paris">
                     <div class="card-body">
                         <h3 class="card-title">Paris</h3>
                         <p class="card-text">Experience the beautiful streets and famous sights of Paris.</p>
@@ -127,7 +144,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/dubai.jpg" alt="View of Dubai">
+                    <img data-src="images/dubai.jpg" alt="View of Dubai">
                     <div class="card-body">
                         <h3 class="card-title">Dubai</h3>
                         <p class="card-text">Explore modern architecture and amazing city views in Dubai.</p>
@@ -135,7 +152,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/istanbul.jpg" alt="View of Istanbul">
+                    <img data-src="images/istanbul.jpg" alt="View of Istanbul">
                     <div class="card-body">
                         <h3 class="card-title">Istanbul</h3>
                         <p class="card-text">Discover the unique culture and architecture of Istanbul.</p>
@@ -143,7 +160,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/japan.jpg" alt="View of Japan">
+                    <img data-src="images/japan.jpg" alt="View of Japan">
                     <div class="card-body">
                         <h3 class="card-title">Japan</h3>
                         <p class="card-text">Discover Japanese culture, temples and beautiful landscapes.</p>
@@ -151,7 +168,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/italy.jpg" alt="View of Italy">
+                    <img data-src="images/italy.jpg" alt="View of Italy">
                     <div class="card-body">
                         <h3 class="card-title">Italy</h3>
                         <p class="card-text">Enjoy historic cities, beautiful architecture and Italian culture.</p>
@@ -159,10 +176,10 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="images/greece.jpg" alt="View of Greece">
+                    <img data-src="images/greece.jpg" alt="View of Greece">
                     <div class="card-body">
                         <h3 class="card-title">Greece</h3>
-                        <p class="card-text">Explore beautiful islands, beaches and acient history.</p>
+                        <p class="card-text">Explore beautiful islands, beaches and ancient history.</p>
                         <a href="destinations.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
@@ -199,31 +216,31 @@
                             </div>
                             <div class="carousel-inner rounded">
                                 <div class="carousel-item active">
-                                    <img src="images/dubai.jpg" class="d-block w-100" alt="Dubai">
+                                    <img data-src="images/dubai.jpg" class="d-block w-100" alt="Dubai">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/japan.jpg" class="d-block w-100" alt="Japan">
+                                    <img data-src="images/japan.jpg" class="d-block w-100" alt="Japan">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/italy.jpg" class="d-block w-100" alt="Italy">
+                                    <img data-src="images/italy.jpg" class="d-block w-100" alt="Italy">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/greece.jpg" class="d-block w-100" alt="Greece">
+                                    <img data-src="images/greece.jpg" class="d-block w-100" alt="Greece">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/bora-bora.jpg" class="d-block w-100" alt="Bora Bora">
+                                    <img data-src="images/bora-bora.jpg" class="d-block w-100" alt="Bora Bora">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/netherlands.jpg" class="d-block w-100" alt="Netherlands">
+                                    <img data-src="images/netherlands.jpg" class="d-block w-100" alt="Netherlands">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/switzerland.jpg" class="d-block w-100" alt="Switzerland">
+                                    <img data-src="images/switzerland.jpg" class="d-block w-100" alt="Switzerland">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/paris.jpg" class="d-block w-100" alt="Paris">
+                                    <img data-src="images/paris.jpg" class="d-block w-100" alt="Paris">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/istanbul.jpg" class="d-block w-100" alt="Istanbul">
+                                    <img data-src="images/istanbul.jpg" class="d-block w-100" alt="Istanbul">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#travelCarousel"
@@ -262,6 +279,7 @@
     <script src="js/sound.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/gallery.js"></script>
+    <script src="js/nav.js"></script>
 </body>
 
 </html>

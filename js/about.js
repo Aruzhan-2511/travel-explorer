@@ -1,5 +1,10 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+    const profileLink = document.getElementById("profileLink");
+
+    if (profileLink && localStorage.getItem("travelLoggedIn") === "true") {
+        profileLink.classList.remove("d-none");
+    }
 
     const teamMembers = [
         {
@@ -57,13 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     teamContainer.innerHTML = teamCards.join("");
 
-
     const infoButtons = document.querySelectorAll(".select-member");
 
     infoButtons.forEach(function (button, index) {
-
         button.addEventListener("click", function () {
-
             const member = teamMembers[index];
 
             selectedMember.textContent = member.name;
@@ -76,9 +78,28 @@ document.addEventListener("DOMContentLoaded", function () {
             card.classList.remove("card-selected");
             void card.offsetWidth;
             card.classList.add("card-selected");
-
         });
-
     });
 
+    const copyButton = $("#copyInfoBtn");
+    const copyIcon = $("#copyIcon");
+    const copyText = $("#copyText");
+    const description = $("#memberDescription");
+    const copyMessage = $("#copyMessage");
+
+    copyButton.on("click", function () {
+        const textToCopy = description.text();
+
+        navigator.clipboard.writeText(textToCopy).then(function () {
+            copyIcon.text("✓");
+            copyText.text("Copied!");
+            copyMessage.removeClass("d-none");
+
+            setTimeout(function () {
+                copyIcon.text("⧉");
+                copyText.text("Copy Info");
+                copyMessage.addClass("d-none");
+            }, 2000);
+        });
+    });
 });

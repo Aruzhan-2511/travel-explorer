@@ -41,15 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const isOpen =
-                question.getAttribute("aria-expanded") === "true" &&
+                question.getAttribute("aria-expanded") === "true" ||
                 answer.classList.contains("active");
-
 
             question.setAttribute(
                 "aria-expanded",
                 String(!isOpen)
             );
 
+            answer.classList.toggle("active", !isOpen);
 
             if (isOpen) {
                 answer.style.maxHeight = "0px";
@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailPattern = /^[^\s@]+\@[^\s@]+\.[^\s@]+$/;
 
             if (name && name.value.trim() === "") {
                 showError(name, "Name is required.");
@@ -324,12 +324,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             if (password) {
+                const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+
                 if (password.value === "") {
                     showError(password, "Password is required.");
-                } else if (password.value.length < 8) {
+                } else if (!passwordPattern.test(password.value)) {
                     showError(
                         password,
-                        "Password must be at least 8 characters."
+                        "Password must have at least 8 characters, a letter, a number, and a special character."
                     );
                 }
             }
@@ -411,7 +413,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = false;
             }
 
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailPattern = /^[^\s@]+\@[^\s@]+\.[^\s@]+$/;
 
             if (!name || name.value.trim().length < 2) {
                 markInvalid(name);
@@ -452,79 +454,134 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    const questionForm = document.querySelector("#questionForm");
+    if (questionForm) {
+        const firstStep = document.querySelector("#formStep1");
+        const secondStep = document.querySelector("#formStep2");
+        const nextButton = document.querySelector("#nextStep");
+        const backButton = document.querySelector("#backStep");
+        const stepDescription = document.querySelector("#stepDescription");
+        const formMessage = document.querySelector("#formMessage");
+        const nameInput = document.querySelector("#visitorName");
+        const emailInput = document.querySelector("#visitorEmail");
+        const questionInput = document.querySelector("#visitorQuestion");
+
+        function showFieldError(input, errorId, message) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = message;
+            input.classList.add("is-invalid");
+        }
     
-const questionForm = document.getElementById("questionForm");
+        function clearFieldError(input, errorId) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = "";
+            input.classList.remove("is-invalid");
+        }
 
-if (questionForm) {
-    const firstStep = document.getElementById("formStep1");
-    const secondStep = document.getElementById("formStep2");
-    const nextButton = document.getElementById("nextStep");
-    const backButton = document.getElementById("backStep");
-    const stepDescription = document.getElementById("stepDescription");
-    const formMessage = document.getElementById("formMessage");
+        function validateFirstStep() {
+            let isValid = true;
 
-    if (firstStep && secondStep && nextButton && backButton && stepDescription && formMessage) {
+            clearFieldError(nameInput, "nameError");
+            clearFieldError(emailInput, "emailError");
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (name === "") {
+                showFieldError(nameInput, "nameError",
+                    "Name is required.");
+                isValid = false;
+            } else if (name.length < 2) {
+                showFieldError(nameInput, "nameError",
+                    "Name must contain at least 2 characters.");
+                isValid = false;
+            }
+        
+            if (email === "") {
+                showFieldError(emailInput, "emailError",
+                    "Email is required.");
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                showFieldError(emailInput, "emailError",
+                    "Please enter a valid email address.");
+                isValid = false;
+            }
+            return isValid;
+        }
+
         nextButton.addEventListener("click", function () {
-            const nameInput = document.getElementById("visitorName");
-            const emailInput = document.getElementById("visitorEmail");
-
-            if (!nameInput.checkValidity()) {
-                nameInput.reportValidity();
+            if (!validateFirstStep()) {    
                 return;
             }
-
-            if (!emailInput.checkValidity()) {
-                emailInput.reportValidity();
-                return;
-            }
-
+            
             firstStep.hidden = true;
             secondStep.hidden = false;
 
-            stepDescription.textContent =
-                "Step 2 of 2: Tell us your travel question.";
-
+            stepDescription.textContent = "Step 2 of 2: Tell us your travel question.";
+            
             formMessage.textContent = "";
-            document.getElementById("visitorQuestion").focus();
+            formMessage.classList.remove("success-message");
+            questionInput.focus();
         });
-
+    
         backButton.addEventListener("click", function () {
             secondStep.hidden = true;
             firstStep.hidden = false;
 
-            stepDescription.textContent =
-                "Step 1 of 2: Tell us about yourself.";
+            stepDescription.textContent = "Step 1 of 2: Tell us about yourself.";
 
             formMessage.textContent = "";
-            document.getElementById("visitorName").focus();
+            formMessage.classList.remove("success-message");
+            nameInput.focus();
         });
 
         questionForm.addEventListener("submit", function (event) {
             event.preventDefault();
-
-            if (!questionForm.checkValidity()) {
-                questionForm.reportValidity();
+            clearFieldError(questionInput, "questionError");
+            
+            if (!validateFirstStep()) {
+                secondStep.hidden = true;
+                firstStep.hidden = false;
+                stepDescription.textContent = "Step 1 of 2: Tell us about yourself.";
                 return;
             }
+        
+            if (questionInput.value.trim() === "") {
+                showFieldError(questionInput, "questionError",
+                    "Please enter your travel question.");
+                    questionInput.focus();
+                    return;
+            }
 
-            const visitorName = document.getElementById("visitorName").value.trim();
-
-            formMessage.textContent =
-                "Thank you, " + visitorName +
+            const visitorName = nameInput.value.trim();
+            formMessage.textContent = "Thank you, " + visitorName + 
                 "! Your form has been completed successfully.";
 
             formMessage.classList.add("success-message");
-
             questionForm.reset();
+
+            clearFieldError(nameInput, "nameError");
+            clearFieldError(emailInput, "emailError");
+            clearFieldError(questionInput, "questionError");
+
             secondStep.hidden = true;
             firstStep.hidden = false;
-
-            stepDescription.textContent =
-                "Step 1 of 2: Tell us about yourself.";
+        
+            stepDescription.textContent = "Step 1 of 2: Tell us about yourself.";
+        });
+    
+        [
+            [nameInput, "nameError"],
+            [emailInput, "emailError"],
+            [questionInput, "questionError"]
+    
+        ].forEach(function ([input, errorId]) {
+            input.addEventListener("input", function () { 
+                clearFieldError(input, errorId);
+            });
         });
     }
-}
-
 
 
     const popupForm = document.getElementById("popupForm");
@@ -533,58 +590,41 @@ if (questionForm) {
         popupForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const nameInput = popupForm.querySelector(
-                "#popupName, #name"
-            );
+            const name = document.getElementById("popupName").value.trim();
+            const email = document.getElementById("popupEmail").value.trim();
+            const message = document.getElementById("popupMessage").value.trim();
 
-            const emailInput = popupForm.querySelector(
-                "#popupEmail, #email"
-            );
+            const nameError = document.getElementById("popupNameError");
+            const emailError = document.getElementById("popupEmailError");
+            const messageError = document.getElementById("popupMessageError");
+            const popupSuccess = document.getElementById("popupSuccess");
 
-            const popupSuccess = document.getElementById(
-                "popupSuccess"
-            );
+            nameError.textContent = "";
+            emailError.textContent = "";
+            messageError.textContent = "";
+            popupSuccess.textContent = "";
 
-            if (!popupForm.checkValidity()) {
-                popupForm.reportValidity();
-                return;
-            }
-
+            let isValid = true;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (nameInput && nameInput.value.trim().length < 2) {
-                alert("Please enter your name (at least 2 characters).");
-                nameInput.focus();
-                return;
+            if (name.length < 2) {
+                nameError.textContent = "Name must have at least 2 characters.";
+                isValid = false;
             }
 
-            if (emailInput &&
-                !emailPattern.test(emailInput.value.trim())) {
-                alert("Please enter a valid email address.");
-                emailInput.focus();
-                return;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Please enter a valid email.";
+                isValid = false;
             }
 
-            if (popupSuccess) {
-                popupSuccess.textContent =
-                    "Form submitted successfully!";
-            } else {
-                alert(
-                    "Thank you! Your form was validated successfully."
-                );
+            if (message === "") {
+                messageError.textContent = "Please enter your message.";
+                isValid = false;
             }
 
-            popupForm.reset();
-
-            const popup = popupForm.closest(".popup-overlay");
-
-            if (popup && !popupSuccess) {
-                closeModal(
-                    popup,
-                    popupConfiguration
-                        ? popupConfiguration.openButton
-                        : null
-                );
+            if (isValid) {
+                popupSuccess.textContent = "Form submitted successfully!";
+                popupForm.reset();
             }
         });
     }

@@ -8,13 +8,17 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/destinations.css">
 </head>
 
 <body>
+
+    <div id="scrollProgress"></div>
+
     <header class="site-header">
         <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+
             <div class="container-fluid">
+
                 <a class="navbar-brand" href="index.html">Travel Explorer</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
@@ -23,25 +27,35 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNavbar">
+
                     <ul class="navbar-nav ms-auto">
+
                         <li class="nav-item">
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link active" href="destinations.html" aria-current="page">Destinations</a>
+                            <a class="nav-link active" href="destinations.html" aria-current="page">
+                                Destinations
+                            </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="tips.html">Travel Tips</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="gallery.html">Gallery</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About Team</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -49,19 +63,26 @@
     </header>
 
     <div class="page-layout">
+
         <aside class="sidebar">
+
             <h2>Quick Links</h2>
+
             <ul>
                 <li><a href="#bora-bora">Bora Bora</a></li>
                 <li><a href="#switzerland">Switzerland</a></li>
                 <li><a href="#paris">Paris</a></li>
                 <li><a href="#japan">Japan</a></li>
             </ul>
+
         </aside>
 
         <main class="page-main container py-4">
+
             <section class="content-box">
+
                 <h1>Our Destinations</h1>
+
                 <p>
                     Find your next adventure. Search for a destination
                     and discover places around the world.
@@ -70,271 +91,369 @@
                 <label for="destinationSearch" class="form-label">
                     Search destinations
                 </label>
+
                 <input type="search" id="destinationSearch" class="form-control"
                     placeholder="Search by country or city..." autocomplete="off">
 
                 <p id="searchResultCount" class="mt-3" aria-live="polite">
                     Showing all destinations
                 </p>
+
             </section>
 
-            <!-- Assignment 5: interactive destination controls -->
             <section class="content-box interactive-travel-panel">
+
                 <h2>Explore More</h2>
+
                 <p id="destinationGreeting">
                     Every destination has a story. Find yours!
                 </p>
 
                 <div class="travel-tools-buttons">
+
                     <button id="destinationFactButton" class="btn btn-primary" type="button">
                         Show a Destination Fact
                     </button>
 
-                    <button id="destinationThemeToggle" class="btn btn-outline-primary" type="button">
-                        Switch to Night Mode
-                    </button>
                 </div>
 
                 <p id="destinationFact" class="travel-fact" aria-live="polite">
                     Select the button to learn something interesting.
                 </p>
+
+            </section>
+            <section class="content-box">
+                <h2>Check Destination Weather</h2>
+                <p>Check the current weather before planning your trip.</p>
+
+                <div class="mb-3">
+                    <label for="weatherCity" class="form-label">Choose destination:</label>
+                    <select id="weatherCity" class="form-select">
+                        <option value="Tokyo">Tokyo, Japan</option>
+                        <option value="Rome">Rome, Italy</option>
+                        <option value="Paris">Paris, France</option>
+                        <option value="Dubai">Dubai, UAE</option>
+                        <option value="Istanbul">Istanbul, Turkey</option>
+                        <option value="Athens">Athens, Greece</option>
+                        <option value="Amsterdam">Amsterdam, Netherlands</option>
+                        <option value="Zurich">Zurich, Switzerland</option>
+                    </select>
+                </div>
+
+                <button type="button" id="checkWeather" class="btn btn-primary">
+                    Check Weather
+                </button>
+
+                <p id="weatherResult" class="mt-3" role="status" aria-live="polite"></p>
             </section>
 
             <section class="content-box">
+
                 <div class="row g-4" id="destinationGrid">
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="bora-bora">
-                            <img src="images/bora-bora.jpg" alt="Turquoise lagoon in Bora Bora" class="img-fluid">
+
+                            <img src="images/bora-bora.jpg" alt="Turquoise lagoon in Bora Bora">
+
                             <div class="card-body">
                                 <h2>Bora Bora</h2>
+
                                 <p>
                                     Bora Bora is a tropical island known for
                                     its turquoise lagoon and beautiful beaches.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Matira Beach</li>
                                     <li>Mount Otemanu</li>
                                     <li>Bora Bora Lagoon</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Bora Bora is ideal for lagoon excursions,
                                     snorkeling, and enjoying island scenery.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="netherlands">
-                            <img src="images/netherlands.jpg"
-                                alt="Canals and traditional architecture in the Netherlands" class="img-fluid">
+
+                            <img src="images/netherlands.jpg" alt="Netherlands canals">
+
                             <div class="card-body">
                                 <h2>Netherlands</h2>
+
                                 <p>
                                     The Netherlands is famous for canals,
                                     cycling routes, windmills, and tulips.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Amsterdam Canals</li>
                                     <li>Keukenhof Gardens</li>
                                     <li>Zaanse Schans</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Spring is especially popular for seeing
                                     tulip fields and colorful flower gardens.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="switzerland">
-                            <img src="images/switzerland.jpg" alt="Mountain scenery in Switzerland" class="img-fluid">
+
+                            <img src="images/switzerland.jpg" alt="Swiss mountains">
+
                             <div class="card-body">
                                 <h2>Switzerland</h2>
+
                                 <p>
                                     Switzerland offers Alpine landscapes,
                                     lakes, scenic railways, and mountain villages.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Interlaken</li>
                                     <li>Lake Geneva</li>
                                     <li>Jungfraujoch</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Visitors can enjoy mountain hiking, skiing,
                                     and panoramic train journeys.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="paris">
-                            <img src="images/paris.jpg" alt="Paris and the Eiffel Tower" class="img-fluid">
+
+                            <img src="images/paris.jpg" alt="Paris Eiffel Tower">
+
                             <div class="card-body">
                                 <h2>Paris</h2>
+
                                 <p>
                                     Paris is known for its art, architecture,
                                     museums, cafes, and romantic atmosphere.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Eiffel Tower</li>
                                     <li>Louvre Museum</li>
                                     <li>Notre-Dame Cathedral</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Walking along the Seine is a wonderful way
                                     to explore the city's historic center.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="istanbul">
-                            <img src="images/istanbul.jpg" alt="Historic Istanbul cityscape" class="img-fluid">
+
+                            <img src="images/istanbul.jpg" alt="Istanbul cityscape">
+
                             <div class="card-body">
                                 <h2>Istanbul</h2>
+
                                 <p>
                                     Istanbul brings together historic landmarks,
                                     lively markets, and cultures from two continents.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Hagia Sophia</li>
                                     <li>Blue Mosque</li>
                                     <li>Grand Bazaar</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     A Bosphorus cruise offers views of the city
                                     from the water.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="dubai">
-                            <img src="images/dubai.jpg" alt="Dubai skyline" class="img-fluid">
+
+                            <img src="images/dubai.jpg" alt="Dubai skyline">
+
                             <div class="card-body">
                                 <h2>Dubai</h2>
+
                                 <p>
                                     Dubai combines modern skyscrapers,
                                     desert landscapes, and shopping destinations.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Burj Khalifa</li>
                                     <li>Dubai Marina</li>
                                     <li>Desert Safari</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Visitors can combine city sightseeing
                                     with desert activities and waterfront walks.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="japan">
-                            <img src="images/japan.jpg" alt="Traditional and modern scenery in Japan" class="img-fluid">
+
+                            <img src="images/japan.jpg" alt="Japan scenery">
+
                             <div class="card-body">
                                 <h2>Japan</h2>
+
                                 <p>
                                     Japan is known for its temples, technology,
                                     traditional culture, and seasonal landscapes.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Tokyo</li>
                                     <li>Kyoto</li>
                                     <li>Mount Fuji</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Cherry blossom season is popular, but exact
                                     flowering dates vary each year.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="italy">
-                            <img src="images/italy.jpg" alt="Historic architecture in Italy" class="img-fluid">
+
+                            <img src="images/italy.jpg" alt="Italy architecture">
+
                             <div class="card-body">
                                 <h2>Italy</h2>
+
                                 <p>
                                     Italy is celebrated for its historic cities,
                                     art, architecture, and regional cuisine.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Rome</li>
                                     <li>Venice</li>
                                     <li>Florence</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Each region has its own local dishes,
                                     traditions, and historical attractions.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
                     <div class="col-md-6 col-lg-4 destination-column">
                         <article class="destination-card" id="greece">
-                            <img src="images/greece.jpg" alt="Greek island with white buildings" class="img-fluid">
+
+                            <img src="images/greece.jpg" alt="Greek island">
+
                             <div class="card-body">
                                 <h2>Greece</h2>
+
                                 <p>
                                     Greece offers ancient historical sites,
                                     island scenery, and Mediterranean beaches.
                                 </p>
+
                                 <h3>Places to Visit</h3>
+
                                 <ul>
                                     <li>Athens</li>
                                     <li>Santorini</li>
                                     <li>Crete</li>
                                 </ul>
+
                                 <button class="btn btn-primary read-more-btn" type="button" aria-expanded="false">
                                     Read More
                                 </button>
+
                                 <p class="destination-extra d-none">
                                     Travelers can explore archaeological sites
                                     and visit islands with different landscapes.
                                 </p>
                             </div>
+
                         </article>
                     </div>
 
@@ -343,16 +462,23 @@
                             No destinations found. Try another search.
                         </p>
                     </div>
+
                 </div>
+
             </section>
 
             <section class="content-box color-changer-section">
+
                 <h2>Customize Your Experience</h2>
+
                 <p>Change the page background to explore different colors.</p>
+
                 <button id="colorButton" class="btn btn-primary" type="button">
                     Change Background Color
                 </button>
+
             </section>
+
         </main>
     </div>
 
@@ -363,11 +489,13 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/sound.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/script.js"></script>
     <script src="js/destinations.js"></script>
+
 </body>
 
 </html>

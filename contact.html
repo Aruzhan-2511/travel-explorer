@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
 <body>
@@ -32,6 +33,7 @@
                     <a class="nav-link text-white" href="gallery.html">Gallery</a>
                     <a class="nav-link text-white" href="about.html">About Team</a>
                     <a class="nav-link text-dark active" href="contact.html">Contact</a>
+                    <a class="nav-link text-white d-none" href="profile.html" id="profileLink">Profile</a>
                 </div>
             </div>
 
@@ -96,6 +98,21 @@
                         our travel recommendations?
                         Send us a message and we will be happy to help.
                     </p>
+                    <section class="auth-section mt-4 mb-4">
+                        <h2>Join Travel Explorer</h2>
+
+                        <p>Create an account or log in to your profile.</p>
+
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button type="button" class="btn btn-primary" id="openSignup">
+                                Sign Up
+                            </button>
+
+                            <button type="button" class="btn btn-outline-primary" id="openLogin">
+                                Log In
+                            </button>
+                        </div>
+                    </section>
 
                     <h2 class="mt-4">Send Us a Message</h2>
 
@@ -109,8 +126,7 @@
                                 Name:
                             </label>
 
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
-                                required>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
 
                             <div class="error-message" id="nameError"></div>
                         </div>
@@ -126,8 +142,8 @@
 
                                 <span class="input-group-text">@</span>
 
-                                <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email" required>
+                                <input type="text" class="form-control" id="email" name="email"
+                                    placeholder="Enter your email">
 
                             </div>
 
@@ -142,7 +158,7 @@
                             </label>
 
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Enter your password" required>
+                                placeholder="Enter your password">
 
                             <div class="error-message" id="passwordError"></div>
                         </div>
@@ -154,7 +170,7 @@
                             </label>
 
                             <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-                                placeholder="Confirm your password" required>
+                                placeholder="Confirm your password">
 
                             <div class="error-message" id="confirmPasswordError"></div>
                         </div>
@@ -194,7 +210,7 @@
                             </label>
 
                             <textarea class="form-control" id="message" name="message" rows="5"
-                                placeholder="Write your message here..." required></textarea>
+                                placeholder="Write your message here..."></textarea>
 
                             <div class="error-message" id="messageError"></div>
                         </div>
@@ -292,7 +308,8 @@
                             Name:
                         </label>
 
-                        <input type="text" class="form-control" id="travelName" required>
+                        <input type="text" class="form-control" id="travelName">
+                        <p class="error-message" id="travelNameError"></p>
                     </div>
 
                     <div class="mb-3">
@@ -300,7 +317,8 @@
                             Email:
                         </label>
 
-                        <input type="email" class="form-control" id="travelEmail" required>
+                        <input type="text" class="form-control" id="travelEmail">
+                        <p class="error-message" id="travelEmailError"></p>
                     </div>
 
                 </div>
@@ -315,7 +333,7 @@
                             Preferred Destination:
                         </label>
 
-                        <select class="form-select" id="travelDestination" required>
+                        <select class="form-select" id="travelDestination">
 
                             <option value="">Choose destination</option>
                             <option value="Italy">Italy</option>
@@ -324,6 +342,7 @@
                             <option value="Other">Other</option>
 
                         </select>
+                        <p class="error-message" id="travelDestinationError"></p>
                     </div>
 
                     <div class="mb-3">
@@ -331,7 +350,8 @@
                             Travel Plans:
                         </label>
 
-                        <textarea class="form-control" id="travelMessage" rows="3" required></textarea>
+                        <textarea class="form-control" id="travelMessage" rows="3"></textarea>
+                        <p class="error-message" id="travelMessageError"></p>
                     </div>
 
                 </div>
@@ -372,7 +392,8 @@
                     </button>
 
                     <button type="submit" class="btn btn-primary" id="submitTravel">
-                        Submit
+                        <span id="submitSpinner" class="spinner-border spinner-border-sm d-none"></span>
+                        <span id="submitText">Submit</span>
                     </button>
 
                     <button type="button" class="btn btn-outline-secondary" id="resetTravel">
@@ -411,6 +432,92 @@
 
     </main>
 
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="signupModalTitle">
+                        Create an Account
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="signupForm" novalidate>
+
+                        <div class="mb-3">
+                            <label for="signupName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="signupName">
+                            <p class="error-message" id="signupNameError"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signupEmail" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="signupEmail">
+                            <p class="error-message" id="signupEmailError"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="signupPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="signupPassword">
+                            <p class="error-message" id="signupPasswordError"></p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Sign Up
+                        </button>
+
+                        <p id="signupSuccess" class="text-success mt-3" role="status" aria-live="polite"></p>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="loginModalTitle">
+                        Log In
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="loginForm" novalidate>
+
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="loginEmail">
+                            <p class="error-message" id="loginEmailError"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword">
+                            <p class="error-message" id="loginPasswordError"></p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Log In
+                        </button>
+
+                        <p id="loginError" class="error-message mt-3" role="alert" aria-live="polite"></p>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
     <div id="popupOverlay" class="popup-overlay">
@@ -423,14 +530,15 @@
 
             <h2 id="popupTitle">Contact Our Team</h2>
 
-            <form id="popupForm">
+            <form id="popupForm" novalidate>
 
                 <div class="mb-3">
                     <label for="popupName" class="form-label">
                         Name:
                     </label>
 
-                    <input type="text" class="form-control" id="popupName" required>
+                    <input type="text" class="form-control" id="popupName">
+                    <p class="error-message" id="popupNameError"></p>
                 </div>
 
                 <div class="mb-3">
@@ -438,7 +546,8 @@
                         Email:
                     </label>
 
-                    <input type="email" class="form-control" id="popupEmail" required>
+                    <input type="text" class="form-control" id="popupEmail">
+                    <p class="error-message" id="popupEmailError"></p>
                 </div>
 
                 <div class="mb-3">
@@ -446,7 +555,8 @@
                         Message:
                     </label>
 
-                    <textarea class="form-control" id="popupMessage" rows="3" required></textarea>
+                    <textarea class="form-control" id="popupMessage" rows="3"></textarea>
+                    <p class="error-message" id="popupMessageError"></p>
                 </div>
 
                 <button type="submit" class="btn btn-primary">
@@ -477,6 +587,9 @@
     <script src="js/sound.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/contact.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/auth.js"></script>
+
 
 
 </body>

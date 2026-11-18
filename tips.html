@@ -6,6 +6,7 @@
     <title>Travel Tips</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
 <body class="page-layout">
@@ -31,9 +32,7 @@
         </nav>
     </header>
     <aside class="page-sidebar p-3">
-
         <h3>Travel Categories</h3>
-
         <div class="category-filters">
             <button type="button" data-category="Beaches">Beaches</button>
             <button type="button" data-category="Mountains">Mountains</button>
@@ -41,16 +40,34 @@
             <button type="button" data-category="Nature">Nature</button>
             <button type="button" data-category="All">Show All</button>
         </div>
-
         <p id="categoryMessage" aria-live="polite">
             Choose a travel category.
         </p>
-
     </aside>
     <main class="page-main container mt-4">
+        <section class="content-box p-4 mb-4">
+            <h2>Search Travel Tips</h2>
+            <p>
+                Enter a keyword to highlight matching words in the travel tips below.
+            </p>          
+            <label for="tipsSearch" class="form-label">
+                Search Keywords
+            </label>
+            <input 
+                type="text"
+                id="tipsSearch"
+                class="form-control"
+                placeholder="For example: travel, beach, documents..."
+                autocomplete="off"
+            >
+    
+            <p id="tipsSearchMessage" class="mt-2 mb-0" aria-live="polite">
+                Start typing to highlight matching words.
+            </p>
+        </section>
         <section class="row p-3 mt-lg-4 px-sm-2">
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <img src="images/travel.jpg" alt="Travel essentials">
+                <img src="images/travel.jpeg" alt="Travel essentials">
                 <h2>Before You Travel</h2>
                 <p>A little preparation can make a trip much easier.</p>
                 <ol>
@@ -61,7 +78,7 @@
                 </ol>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <img src="images/preparation.jpg" alt="Travel preparation">
+                <img src="images/preparation.jpeg" alt="Travel preparation">
                 <h2>Travel Preparation</h2>
                 <p>Good preparation helps make your trip easier and more comfortable.</p>
             </div>
@@ -101,53 +118,46 @@
                 </button>
                 <h2 id="popupTitle">Ask a Travel Question</h2>
                 <p id="stepDescription">Step 1 of 2: Tell us about yourself.</p>
-
-
-                <form id="questionForm">
+                <form id="questionForm" novalidate>
                     <div class="form-step" id="formStep1">
                         <div class="mb-3">
                             <label for="visitorName" class="form-label">Your Name</label>
-                            <input type="text" id="visitorName" class="form-control" required>
+                            <input type="text" id="visitorName" class="form-control">
+                            <small id="nameError" class="text-danger"></small>
                         </div>
-
                         <div class="mb-3">
                             <label for="visitorEmail" class="form-label">Your Email</label>
-                            <input type="email" id="visitorEmail" class="form-control" required>
+                            <input type="email" id="visitorEmail" class="form-control">
+                            <small id="emailError" class="text-danger"></small>
                         </div>
-
                         <button type="button" id="nextStep" class="btn btn-primary w-100">
                             Next
                         </button>
                     </div>
-
                     <div class="form-step" id="formStep2" hidden>
                         <div class="mb-3">
                             <label for="visitorQuestion" class="form-label">Your Question</label>
-                            <textarea id="visitorQuestion" class="form-control" rows="4" required></textarea>
+                            <textarea id="visitorQuestion" class="form-control" rows="4"></textarea>
+                            <small id="questionError" class="text-danger"></small>
                         </div>
-
                         <div class="d-flex gap-2">
                             <button type="button" id="backStep" class="btn btn-secondary w-50">
                                 Back
                             </button>
-
                             <button type="submit" class="btn btn-primary w-50">
                                 Submit Question
                             </button>
                         </div>
                     </div>
-
                     <p id="formMessage" role="status" aria-live="polite"></p>
                 </form>
-
             </div>
         </div>
-
         <section class="row p-3 mt-lg-4">
             <div class="row g-3" id="tipsContainer">
+                <!-- JavaScript will generate travel tips here. -->
             </div>
         </section>
-
 
         <section class="content-box color-changer-section">
             <h2>Change Background Color</h2>
@@ -171,6 +181,7 @@
     <script src="js/sound.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/tips.js"></script>
+    <script src="js/nav.js"></script>
 </body>
 
 </html>

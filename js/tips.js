@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!tipsContainer || !categoryMessage) {
         return;
     }
+    
+    const tipsSearch = $("#tipsSearch");
+    const tipsSearchMessage = $("#tipsSearchMessage");
+    let currentSearchTerm = "";
+
+    function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
     const travelTips = [
         {
             title: "Plan Ahead",
@@ -76,7 +85,57 @@ document.addEventListener("DOMContentLoaded", function () {
             column.appendChild(card);
             tipsContainer.appendChild(column);
         });
+        highlightTips();
     }
+
+    function highlightTips() {
+        const textElements = tipsContainer.querySelectorAll(  
+            ".card-body h3, .card-body p"
+        );
+
+        let totalMatches = 0;   
+        textElements.forEach(function (element) { 
+            
+            const originalText = element.textContent;
+            if (currentSearchTerm === "") {    
+                element.textContent = originalText;
+                return;
+            }
+        
+            const pattern = new RegExp(
+                escapeRegExp(currentSearchTerm),
+                "gi"
+            );
+            const matches = originalText.match(pattern);
+
+            if (matches) { 
+                totalMatches += matches.length;
+            }
+
+            const highlightedText = originalText.replace(
+                pattern,
+                function (match) {
+                    return "<mark>" + match + "</mark>";
+                }
+            );
+            $(element).html(highlightedText);
+        });
+    
+        if (currentSearchTerm === "") {
+            tipsSearchMessage.text(  
+                "Start typing to highlight matching words."
+            );
+        } else if (totalMatches > 0) {
+            tipsSearchMessage.text(
+                "Found " + totalMatches + " matching occurrence(s)."
+            );
+        } else {
+            tipsSearchMessage.text( 
+                'No matches found for "' + currentSearchTerm + '".'
+            );
+        }
+    }
+
     function filterTips(selectedCategory) {
         let filteredTips;
         switch (selectedCategory) {
@@ -123,6 +182,10 @@ document.addEventListener("DOMContentLoaded", function () {
             button.classList.add("active");
             filterTips(button.dataset.category);
         });
+    });
+    tipsSearch.on("input", function () {
+        currentSearchTerm = $(this).val().trim();
+        highlightTips();
     });
     displayTips(travelTips);
     const allButton = document.querySelector(

@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const travelStatus = document.getElementById("travelStatus");
     const travelSummary = document.getElementById("travelSummary");
 
+    const spinner = $("#submitSpinner");
+    const submitText = $("#submitText");
+    const notification = $("#travelStatus");
+
     let currentStep = 0;
 
     function showStep(step) {
@@ -31,18 +35,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validateStep() {
-        const inputs = steps[currentStep].querySelectorAll(
-            "input, select, textarea"
-        );
+        const fields = [
+            ["travelName", "Please enter your name."],
+            ["travelEmail", "Please enter a valid email."],
+            ["travelDestination", "Please select a destination."],
+            ["travelMessage", "Please enter your travel plans."]
+        ];
 
-        for (let input of inputs) {
-            if (!input.checkValidity()) {
-                input.reportValidity();
-                return false;
+        let isValid = true;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        fields.forEach(function (field) {
+            const input = document.getElementById(field[0]);
+            const error = document.getElementById(field[0] + "Error");
+
+            if (!steps[currentStep].contains(input)) {
+                return;
             }
-        }
 
-        return true;
+            const value = input.value.trim();
+            error.textContent = "";
+
+            if (value === "") {
+                error.textContent = field[1];
+                isValid = false;
+            } else if (field[0] === "travelEmail" && !emailPattern.test(value)) {
+                error.textContent = "Please enter a valid email.";
+                isValid = false;
+            }
+        });
+
+        return isValid;
     }
 
     function updateSummary() {
@@ -79,6 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
             case "reset":
                 multiStepForm.reset();
                 currentStep = 0;
+
+                multiStepForm.querySelectorAll(".error-message").forEach(function (error) {
+                    error.textContent = "";
+                });
+
                 break;
         }
 
@@ -103,8 +131,23 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentStep === steps.length - 1) {
             travelStatus.textContent = "Travel inquiry submitted successfully!";
             travelStatus.style.color = "green";
+
+            notification.hide();
+
+            spinner.removeClass("d-none");
+            submitText.text("Please wait...");
+            $(submitButton).prop("disabled", true);
+
+            setTimeout(function () {
+                spinner.addClass("d-none");
+                submitText.text("Submit");
+                $(submitButton).prop("disabled", false);
+
+                notification.fadeIn(400).delay(2000).fadeOut(400);
+            }, 2000);
         }
     });
+
     const stars = document.querySelectorAll(".star");
     const ratingMessage = document.getElementById("ratingMessage");
 

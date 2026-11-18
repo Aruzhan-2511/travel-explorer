@@ -1,15 +1,23 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = Array.from(
-        document.querySelectorAll(".navbar-nav .nav-link")
-    );
+document.addEventListener("DOMContentLoaded", function () {
 
-    if (navLinks.length === 0) return;
+    const savedTheme = localStorage.getItem("travelTheme");
 
-    navLinks.forEach((link, index) => {
-        link.addEventListener("keydown", event => {
-            let nextIndex;
+    document.body.classList.toggle("night-mode", savedTheme === "dark");
+
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    if (navLinks.length === 0) {
+        return;
+    }
+
+    navLinks.forEach(function (link, index) {
+
+        link.addEventListener("keydown", function (event) {
+
+            let nextIndex = index;
 
             switch (event.key) {
+
                 case "ArrowRight":
                 case "ArrowDown":
                     nextIndex = (index + 1) % navLinks.length;
@@ -17,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 case "ArrowLeft":
                 case "ArrowUp":
-                    nextIndex =
-                        (index - 1 + navLinks.length) % navLinks.length;
+                    nextIndex = (index - 1 + navLinks.length) % navLinks.length;
                     break;
 
                 case "Home":
@@ -35,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             event.preventDefault();
             navLinks[nextIndex].focus();
+
         });
+
     });
+
 });

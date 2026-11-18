@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const greeting = document.getElementById("travelerGreeting");
     const greetingButton = document.getElementById("greetingButton");
     const themeButton = document.getElementById("themeToggle");
@@ -29,26 +30,32 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let currentFactIndex = -1;
-    let isNightMode = false;
 
     if (greetingButton && greeting) {
+
         greetingButton.addEventListener("click", () => {
+
             greeting.textContent =
                 "Hello, explorer! Where will your next adventure take you?";
 
             greeting.style.fontWeight = "bold";
-            greeting.style.transition = "color 0.3s ease";
             greeting.style.color = "#0077b6";
 
             if (typeof playSound === "function") {
                 playSound("click");
             }
+
         });
+
     }
 
     if (factButton && factOutput) {
+
         factButton.addEventListener("click", () => {
-            const destinations = travelFacts.map(item => item.destination);
+
+            const destinations = travelFacts.map(
+                item => item.destination
+            );
 
             const availableFacts = travelFacts.filter(
                 item => item.fact.length > 0
@@ -57,10 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const factTexts = availableFacts.map(
                 item => `${item.destination}: ${item.fact}`
             );
-
-            factTexts.forEach(text => {
-                console.log(text);
-            });
 
             if (availableFacts.length === 0) {
                 factOutput.textContent = "No travel facts are available.";
@@ -76,32 +79,140 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${selectedFact.destination}: ${selectedFact.fact}`;
 
             factOutput.classList.remove("fact-animation");
+
             void factOutput.offsetWidth;
+
             factOutput.classList.add("fact-animation");
 
             console.log("Available destinations:", destinations);
+            console.log("Travel facts:", factTexts);
 
             if (typeof playSound === "function") {
                 playSound("click");
             }
+
         });
+
     }
 
     if (themeButton) {
-        themeButton.addEventListener("click", () => {
-            isNightMode = !isNightMode;
-
-            document.body.classList.toggle("night-mode", isNightMode);
+        function updateThemeButton() {
+            const isNightMode = document.body.classList.contains("night-mode");
 
             themeButton.textContent = isNightMode
                 ? "Switch to Day Mode"
                 : "Switch to Night Mode";
 
             themeButton.setAttribute("aria-pressed", String(isNightMode));
+        }
+
+        updateThemeButton();
+
+        themeButton.addEventListener("click", () => {
+            const isNightMode = document.body.classList.toggle("night-mode");
+
+            localStorage.setItem("travelTheme", isNightMode ? "dark" : "light");
+
+            updateThemeButton();
 
             if (typeof playSound === "function") {
                 playSound("click");
             }
         });
     }
+
+});
+
+
+$(document).ready(function () {
+
+    function updateScrollProgress() {
+
+        let scrollTop = $(window).scrollTop();
+
+        let documentHeight =
+            $(document).height() - $(window).height();
+
+        let progress = 0;
+
+        if (documentHeight > 0) {
+            progress = (scrollTop / documentHeight) * 100;
+        }
+
+        $("#scrollProgress").css("width", progress + "%");
+
+    }
+
+    $(window).on("scroll", updateScrollProgress);
+
+    $(window).on("resize", updateScrollProgress);
+
+    updateScrollProgress();
+
+});
+
+
+$(document).ready(function () {
+
+    let countersStarted = false;
+
+    function startCounters() {
+
+        if (countersStarted) {
+            return;
+        }
+
+        let statisticsSection = $("#statistics");
+
+        if (statisticsSection.length === 0) {
+            return;
+        }
+
+        let sectionTop = statisticsSection.offset().top;
+
+        let windowBottom =
+            $(window).scrollTop() + $(window).height();
+
+        if (windowBottom >= sectionTop) {
+
+            countersStarted = true;
+
+            $(".statistic-number").each(function () {
+
+                let counter = $(this);
+
+                let target = Number(counter.attr("data-target"));
+
+                $({ value: 0 }).animate(
+                    { value: target },
+                    {
+                        duration: 2000,
+                        easing: "swing",
+
+                        step: function (now) {
+                            counter.text(
+                                Math.floor(now).toLocaleString("en-US")
+                            );
+                        },
+
+                        complete: function () {
+                            counter.text(
+                                target.toLocaleString("en-US")
+                            );
+                        }
+                    }
+                );
+
+            });
+
+        }
+
+    }
+
+    $(window).on("scroll", startCounters);
+
+    $(window).on("resize", startCounters);
+
+    startCounters();
+
 });
